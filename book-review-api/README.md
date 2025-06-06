@@ -6,21 +6,19 @@ A RESTful API built with **Node.js**, **Express.js**, and **MongoDB** that allow
 
 ## 🚀 Features
 
-- User registration and login with secure password hashing and JWT-based authentication
-- Add, view, and filter books
-- Submit, update, and delete reviews (1 per user per book)
-- Get book details with average rating and reviews
-- Search books by title or author (partial & case-insensitive)
-- Pagination on list and reviews
+- JWT-based authentication
+- Add, view, and search books
+- Submit, update, and delete reviews (1/user/book)
+- Book details include average rating and paginated reviews
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (via Mongoose)
-- **Authentication**: JWT (jsonwebtoken)
-- **Other Tools**: dotenv, bcryptjs, nodemon
+- Node.js, Express.js
+- MongoDB + Mongoose
+- JWT for Authentication
+- bcrypt, dotenv, nodemon
 
 ---
 
@@ -28,47 +26,47 @@ A RESTful API built with **Node.js**, **Express.js**, and **MongoDB** that allow
 
 ### 🔐 Authentication
 
-| Method | Endpoint       | Description        |
-|--------|----------------|--------------------|
-| POST   | `/signup`      | Register new user  |
-| POST   | `/login`       | Login and get token |
+| Method | Endpoint  | Description         |
+|--------|-----------|---------------------|
+| POST   | `/signup` | Register new user   |
+| POST   | `/login`  | Login and get token |
 
 ### 📚 Books
 
-| Method | Endpoint        | Description                                       |
-|--------|------------------|---------------------------------------------------|
-| POST   | `/books`         | Add a book (auth required)                        |
-| GET    | `/books`         | Get all books (pagination, filter by author/genre) |
-| GET    | `/books/:id`     | Get book details + average rating + reviews       |
-| GET    | `/search?q=...`  | Search books by title or author                   |
+| Method | Endpoint       | Description                                         |
+|--------|----------------|-----------------------------------------------------|
+| POST   | `/books`       | Add a book (auth required)                          |
+| GET    | `/books`       | Get all books (pagination + optional filters)       |
+| GET    | `/books/:id`   | Get book details with average rating + reviews      |
+| GET    | `/search`      | Search books by title or author                     |
 
 ### ✍️ Reviews
 
-| Method | Endpoint                 | Description                            |
-|--------|---------------------------|----------------------------------------|
-| POST   | `/books/:id/reviews`      | Add review to book (auth, 1/user/book) |
-| PUT    | `/reviews/:id`            | Update your review                     |
-| DELETE | `/reviews/:id`            | Delete your review                     |
+| Method | Endpoint              | Description                            |
+|--------|------------------------|----------------------------------------|
+| POST   | `/books/:id/reviews`  | Add review to a book (auth)            |
+| PUT    | `/reviews/:id`        | Update your own review                 |
+| DELETE | `/reviews/:id`        | Delete your own review                 |
 
 ---
 
 ## 🔧 Setup Instructions
 
-### 1. Clone the repo
-## 🔧 Setup
 ```bash
+# Clone the repository
 git clone https://github.com/sombdubey/book-review-api.git
 cd book-review-api
+
+# Install dependencies
 npm install
+
+# Set up environment variables
 cp .env.example .env
-# Fill in .env values
+# (Edit .env with your MongoDB URI and secret)
+
+# Run the server
 node server.js
-
-# Signup
-curl -X POST http://localhost:5000/signup -d '{"username":"user","password":"1234"}' -H "Content-Type: application/json"
-
-# Login
-curl -X POST http://localhost:5000/login -d '{"username":"user","password":"1234"}' -H "Content-Type: application/json"
+```
 
 ---
 
