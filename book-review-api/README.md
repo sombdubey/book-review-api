@@ -70,6 +70,8 @@ curl -X POST http://localhost:5000/signup -d '{"username":"user","password":"123
 # Login
 curl -X POST http://localhost:5000/login -d '{"username":"user","password":"1234"}' -H "Content-Type: application/json"
 
+---
+
 ## 🧾 Database Schema
 
 The API uses **MongoDB** with the following collections:
